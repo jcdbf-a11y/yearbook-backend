@@ -1,6 +1,6 @@
 # API do Yearbook — Documentação de Endpoints
 
-Base URL (produção): `https://yearbook-backend.vercel.app`
+Base URL (produção): `https://yearbook-backend-gold.vercel.app/?authuser=1`
 
 ## Convenções
 
