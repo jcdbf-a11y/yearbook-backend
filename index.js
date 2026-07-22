@@ -1,10 +1,12 @@
+import 'dotenv/config';
 import express from 'express';
 import logger from './middlewares/logger.js';
+import tratarErro from './middlewares/erro.js'; 
 import alunosRouter from './routes/alunos.js'; // importa o router de alunos <- NOVO
 import mensagensRouter from './routes/mensagens.js'; // novo import
 
 const app = express();      // cria a aplicação Express
-const PORT = 3000;          // porta do servidor
+const PORT = process.env.PORT || 3000;          // porta do servidor
 
 app.use(express.json());    // middleware que parseia JSON do body das requisições  <- NOVO
 app.use(logger);
@@ -22,6 +24,7 @@ app.get('/status', (req, res) => {
 // registra as rotas de alunos com prefixo /alunos  <- NOVO
 app.use('/alunos', alunosRouter);
 app.use('/mensagens', mensagensRouter); // registra rotas de mensagens
+app.use(tratarErro);
 
 // inicia o servidor localmente — na Vercel essa parte é pulada
 if (process.env.VERCEL !== '1') {
